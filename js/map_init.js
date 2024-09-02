@@ -1,19 +1,51 @@
+window.addEventListener('DOMContentLoaded', () =>{
+
+async function initMap() {
+    const {YMap, YMapDefaultSchemeLayer, YMapDefaultFeaturesLayer, YMapMarker, } = ymaps3;
+
+    const map = new YMap(
+        document.getElementById('map'),
+        {
+            location: {
+                center: [37.695259, 55.750986],
+                zoom: 17
+            }
+        }
+    );
+
+    map.addChild(new YMapDefaultSchemeLayer());
+
+    map.addChild(new YMapDefaultFeaturesLayer());
+
+    const content = document.createElement('div');
+
+    content.className = 'icon'
+    content.innerHTML = '<img src="img/free-icon-beer-bottle-1676691.png" alt="battle" class="icon_map">';
+
+    const marker = new YMapMarker (
+        {
+            coordinates: [37.695259, 55.750986],
+            draggable: true
+        },
+        content
+    );
+
+    map.addChild(marker);
+
+    
+}
 initMap();
 
-    async function initMap() {
-        await ymaps3.ready;
+const icon = document.querySelector('.icon'),
+      modal = document.querySelector('.icon_modal');
 
-        const {YMap, YMapDefaultSchemeLayer} = ymaps3;
+const openFunc = () => {
+    modal.classList.toggle('show');
+}
 
-        const map = new YMap(
-            document.getElementById('map'),
-            {
-                location: {
-                    center: [37.588144, 55.733842],
-                    zoom: 10
-                }
-            }
-        );
+icon.addEventListener('click', openFunc)
+modal.addEventListener('click', () =>{
+    modal.classList.remove('show')
+})
 
-        map.addChild(new YMapDefaultSchemeLayer());
-    }
+})
