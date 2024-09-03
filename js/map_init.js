@@ -1,6 +1,8 @@
 initMap();
 
 async function initMap() {
+    await ymaps3.ready;
+    
     const {YMap, YMapDefaultSchemeLayer, YMapDefaultFeaturesLayer, YMapMarker, } = ymaps3;
 
     const map = new YMap(
